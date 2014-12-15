@@ -3,8 +3,9 @@
 require_relative 'codewords_solver'
 require_relative 'dictionary'
 
-#the codeword words (order of words in array doesn't matter)
-data = [
+#	Fill in the codewords: 
+#	(order of words in array doesn't matter)
+words = [
 #across
 [ 20,13,23,14,8,16,4,18,11 ],
 [ 7,24,11,7,20,8 ],
@@ -53,17 +54,22 @@ data = [
 [ 12,7,9,9,10,7 ]
 ]
 
-#the initial letters we are given
+#Fill in the initial letters that are given:
 letter_map = { 10 => 'L', 13 => 'O', 18 => 'I', 26 => 'F' }
 
 #dictionary
 dict = Dictionary.new.dict
 
-if not CodewordsSolver.valid_data?( data )
+if not CodewordsSolver.valid_data?( words )
 	abort
 end
 
+#	if you are just stuck on one word, you can get a list of
+#	all possible words given the codeword and current letter map:
 
-#solver = CodewordsSolver.new( data, letter_map, dict )
-p CodewordsSolver.word_possibilites( [ 15,18,1,9,18,20,22,8,18,13,1 ], letter_map, dict )
-#p CodewordsSolver.word_possibilites( [ 3 ,13 ], letter_map, dict )
+#p CodewordsSolver.word_possibilites( [ 13,26,8,7,1 ], { 10 => 'L', 13 => 'O', 18 => 'I', 26 => 'F', 3=>'J', 7=>'E', 8=>'T' }, dict )
+
+CodewordsSolver.solve( words, letter_map, dict )
+
+
+
